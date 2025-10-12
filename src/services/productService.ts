@@ -25,5 +25,4 @@ export const getProductById = async (id: string): Promise<Product> => {
         console.log(err);
         throw err;
     }
-
 }
