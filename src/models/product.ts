@@ -6,12 +6,12 @@ export interface Product {
     description: string;
     price: number;
     inStock: boolean;
-    color : string;
+    color: string;
     averageRating: number;
     totalRatings: number;
     createdAt: Date;
     updatedAt: Date;
-    brand : string;
+    brand: string;
     categorieId: string;
 }
 
@@ -31,4 +31,4 @@ export const ProductSchema = new Schema<Product>({
     categorieId: { type: String, required: true },
 });
 
-export const ProductModel=mongoose.model<Product>('Product', ProductSchema);
+export const Product = mongoose.model<Product>('Product', ProductSchema);
