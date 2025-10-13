@@ -1,21 +1,20 @@
-import { Request, Response } from 'express';
-import * as productService from '../services/productService';
-import { Product } from '../models/product';
+import { Request, Response } from "express";
+import * as productService from "../services/productService";
+import { Product } from "../models/product";
 
 export const getAllProducts = async (req: Request, res: Response) => {
     try {
         const products: Product[] = await productService.getAllProducts();
 
         if (products.length === 0) {
-            return res.status(404).json({ message: 'No products found' });
+            return res.status(404).json({ message: "No products found" });
         }
         return res.status(200).json(products);
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ message: 'Internal Server Error' });
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 };
-
 
 export const getProductById = async (req: Request, res: Response) => {
     try {
@@ -25,10 +24,32 @@ export const getProductById = async (req: Request, res: Response) => {
 
         return res.status(200).json(product);
     } catch (error: any) {
-        if (error.message === 'Product not found') {
+        if (error.message === "Product not found") {
             return res.status(404).json({ message: error.message });
         }
 
-        return res.status(500).json({ message: 'Internal Server Error' });
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 };
+
+
+export const createProduct = async (req: Request, res: Response) => {
+    try {
+        const product: Product = req.body;
+
+        const newProduct = await productService.createProduct(product);
+
+        return res.status(201).json({
+            message: "Product created successfully",
+            product: newProduct,
+        });
+    } catch (error: any) {
+        return res.status(error.status || 500).json({
+            message: error.message || "Failed to create product",
+            errors: error.errors || [],
+        });
+    }
+}
+
+
+
