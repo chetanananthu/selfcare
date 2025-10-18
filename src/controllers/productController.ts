@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import * as productService from "../services/productService";
 import { Product } from "../models/product";
+import { error } from "console";
 
 export const getAllProducts = async (req: Request, res: Response) => {
     try {
@@ -48,6 +49,18 @@ export const createProduct = async (req: Request, res: Response) => {
             message: error.message || "Failed to create product",
             errors: error.errors || [],
         });
+    }
+}
+
+
+export const deleteProductById = async (req:Request , res : Response)=>{
+    try{
+        const id = req.params.id;
+        const product= await productService.deleteProductById(id);
+        return res.status(200).json({message : "Product delted successfully"});
+    }
+    catch(err : any){
+        return res.status(500).json({message :"Internal server error",error : err.message});
     }
 }
 
