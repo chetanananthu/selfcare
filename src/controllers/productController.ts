@@ -65,4 +65,25 @@ export const deleteProductById = async (req:Request , res : Response)=>{
 }
 
 
+export const getProductsByCategoryId = async (req:Request , res : Response)=>{
+    try{
+    const categoryId = req.params.categoryId;
+    const Products = await productService.getProductsByCategoryId(categoryId);
+    return res.status(200).json({
+        products : Products
+    })
+    }
+    catch(err:any){
+        if(err.message==="There is no product with given categoryId"){
+            return res.status(404).json({
+                message : err.message
+            });
+        }
+        return res.status(500).json({
+            message : "Internal server error"
+        })
+    }
+}
+
+
 

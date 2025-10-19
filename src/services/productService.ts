@@ -63,3 +63,13 @@ export const deleteProductById = async (id:string)=>{
     }
     return ProductModel.findOneAndDelete({id:id});
 }
+
+
+export const getProductsByCategoryId = async (categoryId: string) => {
+    const products = await ProductModel.find({ categoryId: categoryId });
+    if (!products || products.length === 0) {
+        throw new Error("There is no product with the given categoryId");
+    }
+
+    return products;
+};

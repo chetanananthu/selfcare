@@ -12,7 +12,7 @@ export interface Product extends Document{
     createdAt: Date;
     updatedAt: Date;
     brand: string;
-    categorieId: string;
+    categoryId: string;
 }
 
 export const ProductSchema = new Schema<Product>({
@@ -27,7 +27,7 @@ export const ProductSchema = new Schema<Product>({
     createdAt: { type: Date, required: true, default: Date.now },
     updatedAt: { type: Date, required: true, default: Date.now },
     brand: { type: String, required: true },
-    categorieId: { type: String, required: true },
+    categoryId: { type: String, required: true },
 });
 
 export const ProductModel = mongoose.model<Product>('Products', ProductSchema);
