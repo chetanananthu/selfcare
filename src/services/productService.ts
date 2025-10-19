@@ -56,12 +56,12 @@ export const createProduct = async (product: Product) => {
 
 
 
-export const deleteProductById = async (id:string)=>{
-    const product = await ProductModel.findOne({id:id});
-    if(!product){
+export const deleteProductById = async (id: string) => {
+    const product = await ProductModel.findOne({ id: id });
+    if (!product) {
         throw new Error("Product not found");
     }
-    return ProductModel.findOneAndDelete({id:id});
+    return ProductModel.findOneAndDelete({ id: id });
 }
 
 

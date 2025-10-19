@@ -53,34 +53,34 @@ export const createProduct = async (req: Request, res: Response) => {
 }
 
 
-export const deleteProductById = async (req:Request , res : Response)=>{
-    try{
+export const deleteProductById = async (req: Request, res: Response) => {
+    try {
         const id = req.params.id;
-        const product= await productService.deleteProductById(id);
-        return res.status(200).json({message : "Product delted successfully"});
+        const product = await productService.deleteProductById(id);
+        return res.status(200).json({ message: "Product delted successfully" });
     }
-    catch(err : any){
-        return res.status(500).json({message :"Internal server error",error : err.message});
+    catch (err: any) {
+        return res.status(500).json({ message: "Internal server error", error: err.message });
     }
 }
 
 
-export const getProductsByCategoryId = async (req:Request , res : Response)=>{
-    try{
-    const categoryId = req.params.categoryId;
-    const Products = await productService.getProductsByCategoryId(categoryId);
-    return res.status(200).json({
-        products : Products
-    })
+export const getProductsByCategoryId = async (req: Request, res: Response) => {
+    try {
+        const categoryId = req.params.categoryId;
+        const Products = await productService.getProductsByCategoryId(categoryId);
+        return res.status(200).json({
+            products: Products
+        })
     }
-    catch(err:any){
-        if(err.message==="There is no product with given categoryId"){
+    catch (err: any) {
+        if (err.message === "There is no product with given categoryId") {
             return res.status(404).json({
-                message : err.message
+                message: err.message
             });
         }
         return res.status(500).json({
-            message : "Internal server error"
+            message: "Internal server error"
         })
     }
 }
