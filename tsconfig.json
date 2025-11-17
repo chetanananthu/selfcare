@@ -4,6 +4,8 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
+    "experimentalDecorators": true,      // ✅ needed for decorators
+    "emitDecoratorMetadata": true ,       // ✅ needed for class-validator to read types
     "strict": true,
     "outDir": "./dist",
     "rootDir": "./src"

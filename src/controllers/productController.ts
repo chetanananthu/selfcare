@@ -84,6 +84,3 @@ export const getProductsByCategoryId = async (req: Request, res: Response) => {
         })
     }
 }
-
-
-
